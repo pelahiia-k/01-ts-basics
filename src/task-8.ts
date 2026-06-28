@@ -6,11 +6,13 @@ interface Post {
     body: string;
 }
 
-const fetchPosts = async (postId: number): Promise<Post> => {
-    const response = await axios.get<Post>(
-        `https://jsonplaceholder.typicode.com/posts/${postId}`
+const fetchPosts = async (): Promise<Post[]> => {
+    const response = await axios.get<Post[]>(
+        'https://jsonplaceholder.typicode.com/posts/'
     );
     return response.data;
 };
 
-fetchPosts(5).then((posts) => {console.log(posts.title);});
+fetchPosts().then((posts) => {
+  console.log(posts[0].title);
+});
